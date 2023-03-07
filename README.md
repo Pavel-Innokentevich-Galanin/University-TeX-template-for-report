@@ -1,3 +1,17 @@
+
+<p align="center">
+    <img
+        height="60"
+        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/latex/latex-original.svg"
+    />
+    <img
+        height="60"
+        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
+    />
+</p>        
+
+## Установка
+
 Устанавливаем git, docker, docker-compose, make на Ubuntu 22.10.
 
 ```bash
@@ -24,6 +38,8 @@ git clone git@github.com:Pavel-Innokentevich-Galanin/University-TeX-template-for
 
 cd University-TeX-template-for-report
 ```
+
+## Разработка
 
 Из TeX получаем PDF.
 
