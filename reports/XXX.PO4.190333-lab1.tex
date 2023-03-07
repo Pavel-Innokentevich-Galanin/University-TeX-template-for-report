@@ -1,0 +1,190 @@
+\documentclass[12pt, a4paper, simple]{eskdtext}
+
+\usepackage{config/main.env}
+\usepackage{config/report.env}
+\usepackage{styles/listing}
+\usepackage{styles/lists}
+\usepackage{styles/SectionMargins}
+\usepackage{styles/table}
+\usepackage{styles/TableOfContent}
+\usepackage{styles/url}
+
+\begin{document}
+  \input{include/TitlePage.report.tex}
+
+  % = = = = = = = =
+
+  \ESKDstyle{empty}
+  \begin{center}
+    \textbf{Отчёт лабораторной работы №\envReportLabNumber}
+  \end{center}
+
+  % = = = = = = = =
+
+  \paragraph{} \textbf{Тема}: <<\envReportTitle>>
+
+  % = = = = = = = =
+
+  \paragraph{} \textbf{Цель}:
+  Знакомство с \TeX.
+
+  % = = = = = = = =
+
+  \paragraph{} \textbf{Что нужно сделать}:
+
+  Получить из \TeX~файлов PDF файл.
+
+  % = = = = = = = =
+
+  \begin{center}
+    \textbf{Ход работы}
+  \end{center}
+
+  % = = = = = = = =
+
+  Устанавливаем Git, Docker, docker-compose, make на Ubuntu 22.10.
+
+  \begin{lstlisting}[
+    language=bash,
+    frame=single,
+    rulecolor=\color{blue},
+    name={Терминал},
+  ]
+sudo apt update
+sudo apt install -y git
+sudo apt install -y docker.io docker-compose
+sudo apt install -y make
+\end{lstlisting}
+
+  Чтобы выполнять команды нужно писать sudo docker, sudo docker-compose.
+  Чтобы не писать sudo перед docker и docker-compose, то добавим пользователя в группу \cite{docker-without-sudo}.
+
+  \begin{lstlisting}[
+    language=bash,
+    frame=single,
+    rulecolor=\color{blue},
+    name={Терминал},
+  ]
+sudo apt update
+sudo apt install -y git
+sudo apt install -y docker.io docker-compose
+sudo apt install -y make
+
+sudo groupadd docker
+sudo gpasswd -a $USER docker 
+newgrp docker
+\end{lstlisting}
+
+  Скачиваем репозиторий из GitHub \cite{github}.
+
+  \begin{lstlisting}[
+    language=bash,
+    frame=single,
+    rulecolor=\color{blue},
+    name={Терминал},
+  ]
+ssh-keygen # Enter, Enter, Enter
+cat ~/.ssh/id_rsa.pub # Copy and paste key to https://github.com/settings/ssh/new
+git clone git@github.com:Pavel-Innokentevich-Galanin/University-TeX-template-for-report.git
+
+cd University-TeX-template-for-report
+\end{lstlisting}
+
+  Запускаем сборку
+
+  \begin{lstlisting}[
+    language=bash,
+    frame=single,
+    rulecolor=\color{blue},
+    name={Терминал},
+  ]
+make
+\end{lstlisting}
+
+  % = = = = = = = =
+
+  \newpage
+
+  \lstinputlisting[
+    language=tex,
+    frame=single,
+    rulecolor=\color{magenta},
+  ]{config/main.env.sty}
+
+  \lstinputlisting[
+    language=tex,
+    frame=single,
+    rulecolor=\color{magenta},
+  ]{config/report.env.sty}
+
+  % = = = = = = = =
+
+  % Крутая штука изображена на рис.~\ref{fig:kruto}.
+
+  % \begin{figure}[!h]
+  %   \centering
+  %   \includegraphics[width=18cm]
+  %   {images/picture1.png}
+  %   \caption{\_}
+  %   \label{fig:kruto}
+  % \end{figure}
+
+  % = = = = = = = =
+
+  % Крутая штука (см. рисунок~\ref{fig:mega}) и крутая штука (см. рисунок~\ref{fig:linux})
+
+  % \begin{figure}[!h]
+  %   \centering
+
+  %   \begin{minipage}{0.49\textwidth}
+  %     \centering
+
+  %     \includegraphics[height=5cm]
+  %     {images/picture1.png}
+
+  %     \caption{\_}
+
+  %     \label{fig:mega}
+  %   \end{minipage}
+  %   \begin{minipage}{0.49\textwidth}
+  %     \centering
+
+  %     \includegraphics[height=5cm]
+  %     {images/picture2.png}
+
+  %     \caption{\_}
+
+  %     \label{fig:linux}
+  %   \end{minipage}
+  % \end{figure}
+
+  % = = = = = = = =
+
+  \newpage
+  \begingroup
+    \phantomsection
+    \addcontentsline{toc}{section}{СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ}
+    \section*{Список использованных источников} %\section*{СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ}
+
+    \renewcommand{\addcontentsline}[3]{}% Remove functionality of \addcontentsline
+    \renewcommand{\section}[2]{}% Remove functionality of \section
+
+    \begin{thebibliography}{}
+
+      \bibitem{docker-without-sudo}
+      Как использовать Docker без sudo на Ubuntu
+      [Электронный ресурс]. -
+      Режим доступа:
+      \url{https://itsecforu.ru/2018/04/12/%D0%BA%D0%B0%D0%BA-%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D1%8C-docker-%D0%B1%D0%B5%D0%B7-sudo-%D0%BD%D0%B0-ubuntu}.
+      Дата доступа: 08.03.2023.
+
+      \bibitem{github}
+      GitHub
+      [Electronic resource]. -
+      Mode of access:
+      \url{https://github.com}.
+      Date of access: 08.03.2023.
+    \end{thebibliography}
+  \endgroup
+  % = = = = = = = = = = = = = = = =
+\end{document}
